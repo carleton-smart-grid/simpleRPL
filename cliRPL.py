@@ -33,7 +33,7 @@ def usage():
     return usage
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2: # If there's less than two arguments, the first being the name of the program, there can't possibly be a command
         print usage()
         sys.exit(-1)
 
@@ -41,9 +41,28 @@ if __name__ == '__main__':
     cli_sock = context.socket(zmq.REQ)
     cli_sock.connect("ipc://RPL_CLI")
 
-    try:
-        cli_sock.send(sys.argv[1], zmq.DONTWAIT)
-    except zmq.ZMQError, err:
-        print "unable to communicate with the simpleRPL daemon: %s" % err
-        sys.exit(-1)
-    print cli_sock.recv()
+    interactive = False
+
+    if sys.argv[1] == '-i': # Interactive mode is requested
+        interactive = True
+    else:
+	    try:
+	        cli_sock.send(sys.argv[1], zmq.DONTWAIT)
+	    except zmq.ZMQError, err:
+	        print "unable to communicate with the simpleRPL daemon: %s" % err
+	        sys.exit(-1)
+	    print cli_sock.recv()
+
+
+    while interactive:
+        command = raw_input("cliRPL > ")
+        if command == 'exit':
+            interactive = False
+            break
+        try:
+            print command
+            cli_sock.send(command, zmq.DONTWAIT)
+        except zmq.ZMQError, err:
+            print "unable to communicate with the simpleRPL daemon: %s" % err
+            sys.exit(-1)
+        print cli_sock.recv()
