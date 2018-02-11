@@ -417,7 +417,7 @@ class DODAG(object):
 
         with self.__lock:
             for route in self.downward_routes:
-                    if route == None:
+                    if id(route) == id(None):
                         logger.critical('Route is none - Ignoring add')
                         continue
 
