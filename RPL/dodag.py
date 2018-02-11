@@ -417,8 +417,9 @@ class DODAG(object):
 
         with self.__lock:
             for route in self.downward_routes:
-                    if id(route) == id(None):
-                        logger.critical('Route is none - Ignoring add')
+            	
+                    if route is None:
+                        logger.critical('Route is.' + str(type(route)) + ' Refusing to add a null route')
                         continue
 
 
@@ -445,6 +446,12 @@ class DODAG(object):
 
                     node = gv.neigh_cache.get_node(route.nexthop_iface, route.nexthop, self)
                     current_node = gv.neigh_cache.get_node(current_nexthop_iface, current_nexthop, self)
+
+                    if id(node) == id(current_node):
+                        logger.critical('Refusing to add a duplicate route.')
+                        logger.critical('node is ' + str(id(node)) + ' and has a onehop of ' + str(node.onehop) ' to address ' + str(node.address))
+                        logger.critical('current_node is ' + str(id(current_node)) + ' and has a onehop of ' + str(current_node.onehop) ' to address ' + str(current_node.address))
+
 
                     assert id(node) != id(current_node)
 
