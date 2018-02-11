@@ -447,6 +447,14 @@ class DODAG(object):
                     node = gv.neigh_cache.get_node(route.nexthop_iface, route.nexthop, self)
                     current_node = gv.neigh_cache.get_node(current_nexthop_iface, current_nexthop, self)
 
+                    if node is None:
+                        logger.critical('Node is: ' + str(type(node)) + '\nRefusing to add null node')
+                        continue
+
+                    if current_node is None:
+                        logger.critical('Current_node is: ' + str(type(node)) + '\nRefusing to add null current_node')
+                        continue
+
                     if id(node) == id(current_node):
                         logger.critical('Refusing to add a duplicate route.')
                         logger.critical('node is ' + str(id(node)) + ' and has a onehop of ' + str(node.onehop) + ' to address ' + str(node.address))
