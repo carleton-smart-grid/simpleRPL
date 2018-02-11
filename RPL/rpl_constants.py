@@ -29,7 +29,7 @@ DEFAULT_PATH_CONTROL_SIZE = 0
 DEFAULT_DIO_INTERVAL_MIN = 3  # 8 ms
 
 # default value used to configure Imax for the DIO Trickle timer
-DEFAULT_DIO_INTERVAL_DOUBLINGS = 20  # 2.3 hours
+DEFAULT_DIO_INTERVAL_DOUBLINGS = 11  # 2.3 hours
 
 # default value used to configure k for the DIO Trickle timer
 DEFAULT_DIO_REDUNDANCY_CONSTANT = 10
