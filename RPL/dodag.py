@@ -449,8 +449,8 @@ class DODAG(object):
 
                     if id(node) == id(current_node):
                         logger.critical('Refusing to add a duplicate route.')
-                        logger.critical('node is ' + str(id(node)) + ' and has a onehop of ' + str(node.onehop) ' to address ' + str(node.address))
-                        logger.critical('current_node is ' + str(id(current_node)) + ' and has a onehop of ' + str(current_node.onehop) ' to address ' + str(current_node.address))
+                        logger.critical('node is ' + str(id(node)) + ' and has a onehop of ' + str(node.onehop) + ' to address ' + str(node.address))
+                        logger.critical('current_node is ' + str(id(current_node)) + ' and has a onehop of ' + str(current_node.onehop) + ' to address ' + str(current_node.address))
 
 
                     assert id(node) != id(current_node)
