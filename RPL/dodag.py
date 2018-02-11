@@ -417,6 +417,11 @@ class DODAG(object):
 
         with self.__lock:
             for route in self.downward_routes:
+                    if route == None:
+                        logger.critical('Route is none - Ignoring add')
+                        continue
+
+
                     if route.target not in new_routes:
                         new_routes[route.target] = (route.nexthop, route.nexthop_iface, route.onehop)
                         continue
