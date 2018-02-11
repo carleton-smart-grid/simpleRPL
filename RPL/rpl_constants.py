@@ -42,11 +42,11 @@ DEFAULT_DAO_DELAY = 1
 
 # default duration to wait in order to receive a DAO-ACK message
 # (this value is not defined in the RFC)
-DEFAULT_DAO_ACK_DELAY = 2
+DEFAULT_DAO_ACK_DELAY = 5
 
 # number of times the node should try to send a DAO message before giving up
 # (this value is not defined in the RFC)
-DEFAULT_DAO_MAX_TRANS_RETRY = 3
+DEFAULT_DAO_MAX_TRANS_RETRY = 10
 
 # number of time a DAO will transmit No-Path that contains information on
 # routes that recently have been deleted
