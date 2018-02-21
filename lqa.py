@@ -27,14 +27,14 @@ def printv(string):
 if __name__ == "__main__":
     # declaring program constants
     BROADCAST = 'ff02::1'
-    IFACE = 'wlp3s0'
+    IFACE = 'lowpan0'
     FILE_NAME = 'passinglinks.cfg'
 
 
     # declaring program defaults
     threshold = 0.5
-    count = 5
-    interval = 1.0
+    count = 100
+    interval = 0.1
 
     # parse arguments
     flags = sys.argv
